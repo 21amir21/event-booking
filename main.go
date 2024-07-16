@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/21amir21/event-booking/db"
 	"github.com/21amir21/event-booking/models"
@@ -40,6 +41,24 @@ func main() {
 		}
 
 		ctx.JSON(http.StatusCreated, gin.H{"message": "Event created!", "event": event})
+	})
+
+	r.GET("/events/:id", func(ctx *gin.Context) {
+		id := ctx.Param("id")
+
+		i, err := strconv.Atoi(id)
+		if err != nil {
+			ctx.JSON(http.StatusNotFound, gin.H{"message": "Enter an id in the correct form"})
+			return
+		}
+
+		event, err := models.GetEventByID(i)
+		if err != nil {
+			ctx.JSON(http.StatusNotFound, gin.H{"message": "Could not retrive the event"})
+			return
+		}
+
+		ctx.JSON(http.StatusOK, gin.H{"event": event})
 	})
 
 	r.Run(":8080") // localhost:8080
