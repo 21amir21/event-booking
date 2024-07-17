@@ -34,8 +34,7 @@ func main() {
 		event.ID = 1
 		event.UserID = 1
 
-		err = event.Save()
-		if err != nil {
+		if err = event.Save(); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create event."})
 			return
 		}
