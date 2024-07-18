@@ -47,7 +47,7 @@ func main() {
 
 		i, err := strconv.Atoi(id)
 		if err != nil {
-			ctx.JSON(http.StatusNotFound, gin.H{"message": "Enter an id in the correct form"})
+			ctx.JSON(http.StatusBadRequest, gin.H{"message": "Enter an id in the correct form"})
 			return
 		}
 
