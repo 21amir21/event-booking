@@ -50,6 +50,7 @@ func GetAllEevents() ([]Event, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	defer rows.Close()
 
 	var events []Event
@@ -78,4 +79,38 @@ func GetEventByID(id int) (*Event, error) {
 	}
 
 	return &event, nil
+}
+
+func (e *Event) Update() error {
+	query := `
+	UPDATE events
+	SET name = ?, description = ?, location = ?, dateTime = ?
+	WHERE id = ?
+	`
+
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.ID)
+
+	return err
+}
+
+func (e *Event) Delete() error {
+	query := "DELETE FROM events WHERE id = ?"
+
+	stmt, err := db.DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(e.ID)
+
+	return err
 }
