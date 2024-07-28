@@ -2,12 +2,24 @@ package utils
 
 import (
 	"errors"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/joho/godotenv"
 )
 
-const secretKey = "supersecret"
+func InitEnv() {
+	// Load the environment variables from the .env file
+	if err := godotenv.Load(); err != nil {
+		panic("Error loading .env file")
+	}
+}
+
+func getSecretKey() string {
+	// Get the secret key from the environment variables
+	return os.Getenv("JWT_SECRET")
+}
 
 func GenerateToken(email string, userID int64) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
@@ -16,7 +28,7 @@ func GenerateToken(email string, userID int64) (string, error) {
 		"exp":    time.Now().Add(time.Hour * 2).Unix(), // token expires after 2 hours
 	})
 
-	return token.SignedString([]byte(secretKey))
+	return token.SignedString([]byte(getSecretKey()))
 }
 
 func VerfiyToken(token string) (int64, error) {
@@ -27,7 +39,7 @@ func VerfiyToken(token string) (int64, error) {
 			return nil, errors.New("unexpected signing method")
 		}
 
-		return []byte(secretKey), nil
+		return []byte(getSecretKey()), nil
 	})
 
 	if err != nil {
