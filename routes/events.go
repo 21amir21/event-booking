@@ -65,9 +65,16 @@ func updateEvent(c *gin.Context) {
 		return
 	}
 
-	_, err = models.GetEventByID(i)
+	userId := c.GetInt64("userId")
+	event, err := models.GetEventByID(i)
+
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Could not retrive the event"})
+		return
+	}
+
+	if event.UserID != userId {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "Not Authorized to update event"})
 		return
 	}
 
@@ -99,9 +106,16 @@ func deleteEvent(c *gin.Context) {
 		return
 	}
 
+	userId := c.GetInt64("userId")
 	event, err := models.GetEventByID(i)
+
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"message": fmt.Sprintf("Event with id %v doesn't exist", i)})
+		return
+	}
+
+	if event.UserID != userId {
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "Not Authorized to delete event"})
 		return
 	}
 
