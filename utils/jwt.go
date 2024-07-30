@@ -2,24 +2,10 @@ package utils
 
 import (
 	"errors"
-	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/joho/godotenv"
 )
-
-func InitEnv() {
-	// Load the environment variables from the .env file
-	if err := godotenv.Load(); err != nil {
-		panic("Error loading .env file")
-	}
-}
-
-func getSecretKey() string {
-	// Get the secret key from the environment variables
-	return os.Getenv("JWT_SECRET")
-}
 
 func GenerateToken(email string, userID int64) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
