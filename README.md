@@ -23,7 +23,7 @@ To get a local copy up and running, follow these simple steps.
 ### Prerequisites
 
 - Go
-- Docker (optional)
+- [Docker (optional)](#using-docker)
 
 ### Setup
 
@@ -52,6 +52,32 @@ To start the server, run:
 ```bash
 ./event-booking
 ```
+
+## Using Docker
+
+To build and run the application using Docker, follow these steps:
+
+1. **Build the Docker Image:**
+
+   ```bash
+   docker build --no-cache -t event-booking .
+   ```
+
+2. **Run the Docker Container:**
+
+   ```bash
+   docker run -p 8080:8080 --rm -v $(pwd):/app -v /app/tmp --name event-booking event-booking
+   ```
+
+3. **View Logs:**
+
+   If you need to view the logs of the running container, use:
+
+   ```bash
+   docker logs event-booking
+   ```
+
+By using Docker, you can ensure that the application runs in a consistent environment, regardless of the host operating system.
 
 ## API Functionalities
 
