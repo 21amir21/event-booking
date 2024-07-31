@@ -47,6 +47,26 @@ To get a local copy up and running, follow these simple steps.
 
 ## Usage
 
+### Setting Up Environment Variables
+
+The application requires certain environment variables to be set, especially for JWT (JSON Web Tokens) configuration. These variables should be defined in a `.env` file in the root of your project.
+
+1. **Create a `.env` file:**
+
+   ```bash
+   touch .env
+   ```
+
+2. **Add the following environment variables to the `.env` file:**
+
+   ```env
+   JWT_SECRET=your_jwt_secret_key
+   JWT_EXPIRATION_TIME=7200  # Time in seconds
+   ```
+
+   - `JWT_SECRET`: A secret key used to sign the JWT tokens. It should be a strong, random string.
+   - `JWT_EXPIRATION_TIME`: The expiration time for the JWT tokens in seconds.
+
 To start the server, run:
 
 ```bash
