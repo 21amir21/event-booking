@@ -41,7 +41,7 @@ func createTables() {
 	_, err := DB.Exec(createUsersTable)
 
 	if err != nil {
-		panic("Could not create users table.")
+		panic("Could not create users table: " + err.Error())
 	}
 
 	createEventsTable := `
@@ -59,7 +59,7 @@ func createTables() {
 	_, err = DB.Exec(createEventsTable)
 
 	if err != nil {
-		panic("Could not create events table.")
+		panic("Could not create events table: " + err.Error())
 	}
 
 	createRegistrationsTable := `
@@ -75,6 +75,6 @@ func createTables() {
 	_, err = DB.Exec(createRegistrationsTable)
 
 	if err != nil {
-		panic("Could not create registrations table.")
+		panic("Could not create registrations table: " + err.Error())
 	}
 }
