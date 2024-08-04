@@ -11,12 +11,13 @@ func RegisterRoutes(router *gin.Engine) {
 
 	authenticated := router.Group("/")
 	authenticated.Use(middlewares.Authenticate)
-
-	authenticated.POST("/events", createEvent)
-	authenticated.PUT("/events/:id", updateEvent)
-	authenticated.DELETE("/events/:id", deleteEvent)
-	authenticated.POST("/events/:id/register", registerEvent)
-	authenticated.DELETE("/events/:id/register", cancelRegistration)
+	{
+		authenticated.POST("/events", createEvent)
+		authenticated.PUT("/events/:id", updateEvent)
+		authenticated.DELETE("/events/:id", deleteEvent)
+		authenticated.POST("/events/:id/register", registerEvent)
+		authenticated.DELETE("/events/:id/register", cancelRegistration)
+	}
 
 	router.POST("/signup", signup)
 	router.POST("/login", login)
