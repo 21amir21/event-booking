@@ -16,7 +16,6 @@ type Event struct {
 }
 
 func (e *Event) Save() error {
-
 	query := `
 	INSERT INTO events(name, description, location, dateTime, user_id) 
 	VALUES (?, ?, ?, ?, ?) 
@@ -44,7 +43,6 @@ func (e *Event) Save() error {
 }
 
 func GetAllEevents() ([]Event, error) {
-
 	query := "SELECT * FROM events"
 	rows, err := db.DB.Query(query)
 	if err != nil {
