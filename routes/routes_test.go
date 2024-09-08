@@ -1,43 +1,29 @@
 package routes
 
 import (
-	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
+
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
-func TestLoginRoute(t *testing.T) {
-	mux := http.NewServeMux() // can also be called router
-
-	mux.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-			return
-		}
-
-		var input map[string]string
-		if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
-			http.Error(w, "Bad request", http.StatusBadRequest)
-			return
-		}
-
-		if input["email"] == "testuser@example.com" && input["password"] == "test" {
-			w.WriteHeader(http.StatusOK)
-			return
-		}
-
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+func setupRouter() *gin.Engine {
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.String(200, "pong")
 	})
+	return r
+}
 
-	req, _ := http.NewRequest("POST", "/login", strings.NewReader(`{"email": "testuser@example.com", "password": "test"}`))
-	req.Header.Set("Content-Type", "application/json")
+func TestPingRoute(t *testing.T) {
+	router := setupRouter()
 
 	w := httptest.NewRecorder()
-	mux.ServeHTTP(w, req)
+	req, _ := http.NewRequest("GET", "/ping", nil)
+	router.ServeHTTP(w, req)
 
-	if w.Code != http.StatusOK {
-		t.Errorf("Expected status code OK, got %v", w.Code)
-	}
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, "pong", w.Body.String())
 }
