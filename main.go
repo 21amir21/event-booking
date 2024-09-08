@@ -9,11 +9,9 @@ import (
 
 func main() {
 	db.InitDB()
-
 	utils.InitEnv()
 
 	r := gin.Default()
-
 	routes.RegisterRoutes(r)
 
 	r.Run(":8080") // localhost:8080
