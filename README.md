@@ -86,7 +86,7 @@ To build and run the application using Docker, follow these steps:
 2. **Run the Docker Container:**
 
    ```bash
-   docker run -p 8080:8080 --rm -v $(pwd):/app -v /app/tmp --name event-booking event-booking
+   docker run -p 8080:8080 --rm -v $(pwd):/app -v /app/tmp --name event-booking-ctr event-booking
    ```
 
 3. **View Logs:**
