@@ -7,7 +7,7 @@ import (
 )
 
 // Load the environment variables from the .env file
-func InitEnv() {
+func LoadEnv() {
 	if err := godotenv.Load(); err != nil {
 		panic("Error loading .env file")
 	}

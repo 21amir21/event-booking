@@ -9,7 +9,7 @@ import (
 
 func main() {
 	db.InitDB()
-	utils.InitEnv()
+	utils.LoadEnv()
 
 	r := gin.Default()
 	routes.RegisterRoutes(r)
