@@ -94,7 +94,7 @@ To build and run the application using Docker, follow these steps:
    If you need to view the logs of the running container, use:
 
    ```bash
-   docker logs event-booking
+   docker logs event-booking-ctr
    ```
 
 By using Docker, you can ensure that the application runs in a consistent environment, regardless of the host operating system.
