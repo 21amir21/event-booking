@@ -29,7 +29,7 @@ func registerEvent(c *gin.Context) {
 	err = event.Register(userId)
 
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": fmt.Sprintf("Could not register user with id %v .", userId)})
+		c.JSON(http.StatusInternalServerError, gin.H{"message": fmt.Sprintf("Could not register user %v", userId), "error": err.Error()})
 		return
 	}
 
