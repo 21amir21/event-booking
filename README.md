@@ -61,7 +61,7 @@ The application requires certain environment variables to be set, especially for
 
    ```env
    JWT_SECRET=your_jwt_secret_key
-   JWT_EXPIRATION_TIME=7200  # Time in seconds,, no need to add it, the code now handles it
+   JWT_EXPIRATION_TIME=7200  # Time in seconds,, no need to add it, the code handles it for now
    ```
 
    - `JWT_SECRET`: A secret key used to sign the JWT tokens. It should be a strong, random string.
