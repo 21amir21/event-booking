@@ -7,21 +7,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Authenticate(c *gin.Context) {
-	token := c.GetHeader("Authorization")
+func Authenticate() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token := c.GetHeader("Authorization")
 
-	if token == "" {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized"})
-		return
+		if token == "" {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized"})
+			return
+		}
+
+		userId, err := utils.VerfiyToken(token)
+
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized", "error": err.Error()})
+			return
+		}
+
+		c.Set("userId", userId)
+		c.Next()
 	}
-
-	userId, err := utils.VerfiyToken(token)
-
-	if err != nil {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized", "error": err.Error()})
-		return
-	}
-
-	c.Set("userId", userId)
-	c.Next()
 }
