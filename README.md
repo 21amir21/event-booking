@@ -125,4 +125,4 @@ By using Docker, you can ensure that the application runs in a consistent enviro
 
 ### You can test these endpoints using Postman API
 
-[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/29342651-080fbb9b-524f-456f-b7c7-e2feb69eab82?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D29342651-080fbb9b-524f-456f-b7c7-e2feb69eab82%26entityType%3Dcollection%26workspaceId%3De0688b45-b4e7-41d6-9ad8-ce1cdec36182)
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/29342651-6b3f197e-9b78-4a3b-919a-f07e1b6e0a1f?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D29342651-6b3f197e-9b78-4a3b-919a-f07e1b6e0a1f%26entityType%3Dcollection%26workspaceId%3De0688b45-b4e7-41d6-9ad8-ce1cdec36182)
