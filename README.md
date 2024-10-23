@@ -15,6 +15,7 @@ Welcome to the Event Booking System! This project is designed to help users book
     - [Event Management](#event-management)
     - [User Registration](#user-registration)
     - [Event Booking](#event-booking)
+  - [Test API via Postman](#you-can-test-these-endpoints-using-postman-api)
 
 ## Installation
 
