@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/21amir21/event-booking/utils"
 	"github.com/gin-gonic/gin"
@@ -9,7 +10,8 @@ import (
 
 func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		token := c.GetHeader("Authorization")
+		// taking the token after Bearer {TOKEN_HERE}
+		token := strings.Split(c.GetHeader("Authorization"), " ")[1]
 
 		if token == "" {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized"})
