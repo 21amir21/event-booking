@@ -10,6 +10,7 @@ import (
 
 func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
 		// taking the token after Bearer {TOKEN_HERE}
 		token := strings.Split(c.GetHeader("Authorization"), " ")[1]
 
