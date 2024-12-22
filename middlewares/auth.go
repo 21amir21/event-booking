@@ -15,14 +15,14 @@ func Authenticate() gin.HandlerFunc {
 		token := strings.Split(c.GetHeader("Authorization"), " ")[1]
 
 		if token == "" {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized"})
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not Authorized"})
 			return
 		}
 
 		userId, err := utils.VerfiyToken(token)
 
 		if err != nil {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"mesage": "Not Authorized", "error": err.Error()})
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": "Not Authorized", "error": err.Error()})
 			return
 		}
 
