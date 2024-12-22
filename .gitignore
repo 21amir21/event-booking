@@ -29,3 +29,7 @@ go.work.sum
 
 # Main binary
 main
+
+# IDE-specific files
+.idea/
+.vscode/
