@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine
+FROM golang:1.23-alpine
 
 # Install necessary packages for CGO
 RUN apk update && apk add --no-cache gcc musl-dev
