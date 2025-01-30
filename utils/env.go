@@ -13,7 +13,7 @@ func LoadEnv() {
 	}
 }
 
-// Get the secret key from the environment variables
+// getSecretKey gets the secret key from the environment variables
 func getSecretKey() string {
 	return os.Getenv("JWT_SECRET")
 }
